@@ -48,27 +48,32 @@ public class StateMachineConfig extends StateMachineConfigurerAdapter<PaymentSta
                 .target(NEW)
                 .event(PRE_AUTHORIZE)
                 .action(new PreAuthorizeAction())
+
                 .and()
                 .withExternal()
                 .source(NEW)
                 .target(PRE_AUTH)
                 .event(PRE_AUTH_APPROVED)
+
                 .and()
                 .withExternal()
                 .source(NEW)
                 .target(PRE_AUTH_ERROR)
                 .event(PRE_AUTH_DECLINED)
+
                 .and()
                 .withExternal()
                 .source(PRE_AUTH)
                 .target(PRE_AUTH)
                 .event(AUTHORIZE)
                 .action(new AuthorizeAction())
+
                 .and()
                 .withExternal()
                 .source(PRE_AUTH)
                 .target(AUTH)
                 .event(AUTH_APPROVED)
+
                 .and()
                 .withExternal()
                 .source(PRE_AUTH)
@@ -81,7 +86,7 @@ public class StateMachineConfig extends StateMachineConfigurerAdapter<PaymentSta
         final StateMachineListenerAdapter<PaymentState, PaymentEvent> adapter = new StateMachineListenerAdapter<>() {
             @Override
             public void stateChanged(State<PaymentState, PaymentEvent> from, State<PaymentState, PaymentEvent> to) {
-                log.info("SM state changed from {} to {}", from, to);
+                log.info("SM state changed from {} to {}", from.getId(), to.getId());
             }
         };
         config.withConfiguration()

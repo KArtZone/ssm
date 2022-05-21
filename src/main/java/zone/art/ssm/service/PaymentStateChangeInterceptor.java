@@ -27,7 +27,11 @@ public class PaymentStateChangeInterceptor extends StateMachineInterceptorAdapte
     private final PaymentRepository repository;
 
     @Override
-    public void preStateChange(State<PaymentState, PaymentEvent> state, Message<PaymentEvent> message, Transition<PaymentState, PaymentEvent> transition, StateMachine<PaymentState, PaymentEvent> stateMachine, StateMachine<PaymentState, PaymentEvent> rootStateMachine) {
+    public void preStateChange(State<PaymentState, PaymentEvent> state,
+                               Message<PaymentEvent> message,
+                               Transition<PaymentState, PaymentEvent> transition,
+                               StateMachine<PaymentState, PaymentEvent> stateMachine,
+                               StateMachine<PaymentState, PaymentEvent> rootStateMachine) {
         Optional.ofNullable(message).flatMap(msg -> Optional.ofNullable((Long) msg.getHeaders().getOrDefault(
                 PAYMENT_ID_HEADER, -1L))).ifPresent(paymentId -> {
             final Payment payment = repository.getReferenceById(paymentId);

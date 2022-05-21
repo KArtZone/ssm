@@ -31,8 +31,7 @@ public class AuthorizeAction implements Action<PaymentState, PaymentEvent> {
             log.info("Auth approved");
             context.getStateMachine().sendEvent(MessageBuilder.withPayload(AUTH_APPROVED)
                     .setHeader(PAYMENT_ID_HEADER, messageHeader)
-                    .build(
-                    ));
+                    .build());
         } else {
             log.info("Auth: declined. No credit!");
             context.getStateMachine().sendEvent(MessageBuilder.withPayload(AUTH_DECLINED)

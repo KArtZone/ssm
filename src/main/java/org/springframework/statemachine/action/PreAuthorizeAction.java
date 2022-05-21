@@ -31,8 +31,7 @@ public class PreAuthorizeAction implements Action<PaymentState, PaymentEvent> {
             log.info("PreAuth approved!");
             context.getStateMachine().sendEvent(MessageBuilder.withPayload(PRE_AUTH_APPROVED)
                     .setHeader(PAYMENT_ID_HEADER, messageHeader)
-                    .build(
-                    ));
+                    .build());
         } else {
             log.info("PreAuth: declined. No credit!");
             context.getStateMachine().sendEvent(MessageBuilder.withPayload(PRE_AUTH_DECLINED)

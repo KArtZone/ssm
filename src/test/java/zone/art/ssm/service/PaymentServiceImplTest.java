@@ -13,7 +13,6 @@ import zone.art.ssm.repository.PaymentRepository;
 
 import javax.transaction.Transactional;
 import java.math.BigDecimal;
-import java.util.Objects;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static zone.art.ssm.domain.PaymentState.*;
@@ -38,12 +37,13 @@ class PaymentServiceImplTest {
     Payment payment;
 
     // изменить на значение меньше чем "9999.42" чтобы протестировать ветки ошибок
-    final static BigDecimal AMOUNT = new BigDecimal("9999.42");
+    final static BigDecimal AMOUNT = new BigDecimal("9999.41");
 
     @BeforeEach
     void before() {
         payment = Payment.builder()
                 .amount(AMOUNT)
+                .state(NEW)
                 .build();
     }
 

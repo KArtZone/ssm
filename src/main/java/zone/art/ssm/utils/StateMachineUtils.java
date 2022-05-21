@@ -10,6 +10,9 @@ import zone.art.ssm.domain.PaymentState;
  */
 public class StateMachineUtils {
 
+    private StateMachineUtils() {
+    }
+
     public static PaymentState getId(StateMachine<PaymentState, PaymentEvent> sm) {
         return sm.getState().getId();
     }

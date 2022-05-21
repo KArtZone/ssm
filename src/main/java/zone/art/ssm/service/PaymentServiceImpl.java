@@ -16,7 +16,6 @@ import javax.transaction.Transactional;
 import static org.springframework.messaging.support.MessageBuilder.withPayload;
 import static zone.art.ssm.domain.PaymentEvent.AUTHORIZE;
 import static zone.art.ssm.domain.PaymentEvent.PRE_AUTHORIZE;
-import static zone.art.ssm.domain.PaymentState.NEW;
 
 /**
  * @author Art Kart
@@ -37,7 +36,6 @@ public class PaymentServiceImpl implements PaymentService {
     @Override
     @Transactional
     public Payment newPayment(Payment payment) {
-        payment.setState(NEW);
         return repository.save(payment);
     }
 

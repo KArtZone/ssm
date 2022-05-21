@@ -9,7 +9,6 @@ import javax.persistence.Entity;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-
 import java.math.BigDecimal;
 
 import static javax.persistence.EnumType.STRING;
@@ -18,8 +17,8 @@ import static javax.persistence.EnumType.STRING;
  * @author Art Kart
  * @since 21.05.2022
  */
-@Entity
 @Data
+@Entity
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
@@ -30,7 +29,7 @@ public class Payment {
     private Long id;
 
     @Enumerated(STRING)
-    private PaymentState state = PaymentState.NEW;
+    private PaymentState state;
 
     private BigDecimal amount;
 }
